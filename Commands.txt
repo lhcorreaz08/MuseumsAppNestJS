@@ -1,0 +1,26 @@
+***Ejecutar la aplicación**
+npm run start:dev
+
+Crear una nueva aplicación
+nest new project-name
+
+Creación de un modulo
+nest g mo museum
+
+Creación de una nueva entidad
+nest g cl museum/museum.entity --no-spec
+
+Instalación de la dependencia para postgress
+npm install pg --save
+
+Creación de un servicio
+nest g s museum
+
+Ejecutar pruebas
+npm run test:watch
+
+Instalación de dependiencia para pruebas con DB
+npm install sqlite3 --save
+
+Instalación de faker
+npm install @faker-js/faker
