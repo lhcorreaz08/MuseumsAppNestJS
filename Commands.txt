@@ -24,3 +24,15 @@ npm install sqlite3 --save
 
 Instalación de faker
 npm install @faker-js/faker
+
+Creación de un controlador
+nest g co museum --no-spec
+
+Creación del interceptor de errores. 
+nest g itc shared/interceptors/business-errors --no-spec
+
+Creación de un DTO (Reglas de validación sobre las entidades) 
+nest g cl museum/museum.dto --no-spec
+
+instalación del class validator
+npm install class-validator --save
