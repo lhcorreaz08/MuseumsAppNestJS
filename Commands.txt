@@ -36,3 +36,12 @@ nest g cl museum/museum.dto --no-spec
 
 instalación del class validator
 npm install class-validator --save
+
+
+Configuración de cache
+Verificar las versiones en el package pq estan fallando
+npm install --save cache-manager@^4.0.0
+npm install --save-dev @types/cache-manager@^4.0.0
+
+
+npx rimraf --glob **/node_modules

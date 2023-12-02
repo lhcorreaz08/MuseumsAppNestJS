@@ -5,16 +5,32 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { MuseumEntity } from './museum.entity';
+import { CACHE_MANAGER, Inject } from '@nestjs/common';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class MuseumService {
+
+  cacheKey: string = "artists"
+
    constructor(
        @InjectRepository(MuseumEntity)
-       private readonly museumRepository: Repository<MuseumEntity>
+       private readonly museumRepository: Repository<MuseumEntity>,
+
+       @Inject(CACHE_MANAGER)
+       private readonly cacheManager: Cache
    ){}
 
    async findAll(): Promise<MuseumEntity[]> {
-       return await this.museumRepository.find({ relations: ["artworks", "exhibitions"] });
+    const cached: MuseumEntity[] = await this.cacheManager.get<MuseumEntity[]>(this.cacheKey);
+      
+    if(!cached){
+        const museums: MuseumEntity[] = await this.museumRepository.find({ relations: ["artworks", "exhibitions"] });
+        await this.cacheManager.set(this.cacheKey, museums);
+        return museums;
+    }
+
+    return cached;
    }
 
    async findOne(id: string): Promise<MuseumEntity> {

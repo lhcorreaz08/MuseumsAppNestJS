@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { MuseumEntity } from './museum.entity';
 import { MuseumService } from './museum.service';
+import { CacheModule } from '@nestjs/common';
 
 import { faker } from '@faker-js/faker';
 
@@ -15,7 +16,7 @@ describe('MuseumService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [...TypeOrmTestingConfig()],
+      imports: [...TypeOrmTestingConfig(), CacheModule.register()],
       providers: [MuseumService],
     }).compile();
 
