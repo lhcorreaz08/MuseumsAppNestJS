@@ -1,25 +1,32 @@
 /* eslint-disable prettier/prettier */
 import {IsNotEmpty, IsString, IsUrl} from 'class-validator';
-export class MuseumDto {
+import { Field, InputType } from '@nestjs/graphql';
 
- @IsString()
- @IsNotEmpty()
- readonly name: string;
- 
- @IsString()
- @IsNotEmpty()
- readonly description: string;
- 
- @IsString()
- @IsNotEmpty()
- readonly address: string;
- 
- @IsString()
- @IsNotEmpty()
- readonly city: string;
- 
- @IsUrl()
- @IsNotEmpty()
- readonly image: string;
-}
+@InputType()
+export class MuseumDto {
+    @Field()
+    @IsString()
+    @IsNotEmpty()
+    readonly name: string;
+   
+    @Field()
+    @IsString()
+    @IsNotEmpty()
+    readonly description: string;
+   
+    @Field()
+    @IsString()
+    @IsNotEmpty()
+    readonly address: string;
+   
+    @Field()
+    @IsString()
+    @IsNotEmpty()
+    readonly city: string;
+    
+    @Field()
+    @IsUrl()
+    @IsNotEmpty()
+    readonly image: string;
+   }
 /* archivo: src/museum/museum.dto.ts */

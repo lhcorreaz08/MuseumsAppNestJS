@@ -5,23 +5,37 @@ import { MuseumEntity } from "../museum/museum.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ImageEntity } from "../image/image.entity";
 import { ArtistEntity } from "../artist/artist.entity";
+import { Field, ObjectType } from "@nestjs/graphql";
 
+@ObjectType()
 @Entity()
 export class ArtworkEntity {
 
+   @Field()
    @PrimaryGeneratedColumn("uuid")
    id: string;
+   
+   @Field()
    @Column()
    name: string;
+   
+   @Field()
    @Column()
    year: number;
+   
+   @Field()
    @Column()
    description: string;
+   
+   @Field()
    @Column()
    type: string;
+   
+   @Field()
    @Column()
    mainImage: string;
 
+   @Field(type => MuseumEntity)
    @ManyToOne(() => MuseumEntity, museum => museum.artworks)
    museum: MuseumEntity;
 

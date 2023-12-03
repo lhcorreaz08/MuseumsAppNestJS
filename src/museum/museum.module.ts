@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MuseumEntity } from './museum.entity';
 import { MuseumService } from './museum.service';
 import { MuseumController } from './museum.controller';
+import { MuseumResolver } from './museum.resolver';
 
 @Module({
-  providers: [MuseumService],
+  providers: [MuseumService, MuseumResolver],
   imports: [TypeOrmModule.forFeature([MuseumEntity]), CacheModule.register()],
   controllers: [MuseumController],
 })
